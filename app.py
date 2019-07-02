@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todo.db'
@@ -12,6 +13,7 @@ class Post(db.Model):
    
     __tablename__ = "posts"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    date = db.Column(db.Text())
     title = db.Column(db.Text())
     content = db.Column(db.Text())
 
@@ -51,6 +53,7 @@ def create_post():
     new_post = Post()
     new_post.title = request.form["title"]
     new_post.content = request.form["content"]
+    new_post.date = str(datetime.today().year) + "-" + str(datetime.today().month) + "-" + str(datetime.today().day)
     db.session.add(new_post)
     db.session.commit()
 
@@ -72,6 +75,7 @@ def update_post(id):
     post = Post.query.get(id)
     post.title = request.form["title"]
     post.content = request.form["content"]
+    post.date = str(datetime.today().year) + "-" + str(datetime.today().month) + "-" + str(datetime.today().day)
     db.session.commit()
 
     return render_template("show.html", post = post)
