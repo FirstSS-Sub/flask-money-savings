@@ -10,15 +10,15 @@
                 <tr>
                     <td>{{ post.date }}</td>
                     <td>{{ post.title }}</td>
-                    <td><a href="/show/{{ post.id }}" class="btn btn-success">詳細</a></td>
-                    <td><a href="/edit/{{ post.id }}" class="btn btn-warning">編集</a></td>
-                    <td><a href="/destroy/{{ post.id }}" class="btn btn-danger">削除</a></td>
+                    <td><a href="/show/{{ post.id }}" class="btn btn-success far fa-file-alt"> 詳細 </a></td>
+                    <td><a href="/edit/{{ post.id }}" class="btn btn-warning far fa-edit"> 編集 </a></td>
+                    <td><a href="/destroy/{{ post.id }}" class="btn btn-danger fas fa-trash-alt"> 削除 </a></td>
                 </tr>
             </div> 
             {% endfor %}
         </table>
         <p>
-            <a href="/new" class="btn btn-primary">新規</a>
+            <a href="/new" class="btn btn-primary far fa-file"> 新規 </a>
         </p>
     </div>
 {% endblock %}

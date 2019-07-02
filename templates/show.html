@@ -1,15 +1,27 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="container">
-    <h1>{{ post.title }}</h1><br>
-    <div class="row">
-        <p>{{ post.content }}</p>
+
+    <div class="card bg-light">
+        <div class="card-header">
+            <h2>{{ post.title }}</h2>
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p>{{ post.content }}</p>
+                <footer class="blockquote-footer"><cite title="Source Title">(Last Update: {{ post.date }})</cite></footer>
+            </blockquote>
+        </div>
     </div>
-    <p>(Last Update: {{ post.date }})</p>
-    <p>
-        <a href="/edit/{{ post.id }}" class="btn btn-warning">編集</a>
-        <a href="/destroy/{{ post.id }}" class="btn btn-danger">削除</a>
-    </p>
+
+    <br>
+    <div>
+        <a href="/edit/{{ post.id }}" class="btn btn-warning far fa-edit"> 編集 </a>
+        <a href="/destroy/{{ post.id }}" class="btn btn-danger fas fa-trash-alt"> 削除 </a>
+    </div>
+    
+    <br>
     <p><a href="/" class="btn btn-secondary">一覧に戻る</a></p>
+
 </div>
 {% endblock %}
