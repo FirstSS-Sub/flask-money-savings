@@ -1,5 +1,19 @@
 {% extends "layout.html" %}
 {% block content %}
-    <h1>Test Page</h1>
-    <p>{{ message }}</p>
+    <h1>ToDo</h1>
+    <table>
+        <tr><th>ID</th><th>Title</th></tr>
+        {% for post in posts %}     
+            <tr>
+                <td>{{ post.id }}</td>
+                <td>{{ post.title }}</td>
+                <td><a href="/show/{{ post.id }}">詳細</a></td>
+                <td><a href="/edit/{{ post.id }}">編集</a></td>
+                <td><a href="/destroy/{{ post.id }}">削除</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <p>
+        <a href="">新規</a>
+    </p>
 {% endblock %}
