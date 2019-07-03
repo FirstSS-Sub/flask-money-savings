@@ -16,6 +16,7 @@ class Post(db.Model):
     date = db.Column(db.Text())
     title = db.Column(db.Text())
     content = db.Column(db.Text())
+    commit = db.Column(db.Integer)
 
 
 @app.route('/')
@@ -54,6 +55,7 @@ def create_post():
     new_post.title = request.form["title"]
     new_post.content = request.form["content"]
     new_post.date = str(datetime.today().year) + "-" + str(datetime.today().month) + "-" + str(datetime.today().day)
+    new_post.commit = 0
     db.session.add(new_post)
     db.session.commit()
 
@@ -79,3 +81,23 @@ def update_post(id):
     db.session.commit()
 
     return render_template("show.html", post = post)
+
+@app.route('/done/<int:id>')
+def done_post(id):
+
+    post = Post.query.get(id)
+    post.commit = 1
+    db.session.commit()
+    posts = Post.query.all()
+
+    return render_template("index.html", posts = posts)
+
+@app.route('/undone/<int:id>')
+def undone_post(id):
+
+    post = Post.query.get(id)
+    post.commit = 0
+    db.session.commit()
+    posts = Post.query.all()
+
+    return render_template("index.html", posts = posts)
