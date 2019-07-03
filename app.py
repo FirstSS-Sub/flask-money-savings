@@ -87,6 +87,7 @@ def done_post(id):
 
     post = Post.query.get(id)
     post.commit = 1
+    post.date = str(datetime.today().year) + "-" + str(datetime.today().month) + "-" + str(datetime.today().day)
     db.session.commit()
     posts = Post.query.all()
 
@@ -97,6 +98,7 @@ def undone_post(id):
 
     post = Post.query.get(id)
     post.commit = 0
+    post.date = str(datetime.today().year) + "-" + str(datetime.today().month) + "-" + str(datetime.today().day)
     db.session.commit()
     posts = Post.query.all()
 
