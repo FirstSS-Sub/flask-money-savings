@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 app = Flask(__name__)
@@ -39,7 +39,8 @@ def destroy(id):
     db.session.delete(post)
     db.session.commit()
     posts = Post.query.all()
-    return render_template("index.html", posts = posts)
+
+    return redirect(url_for('.index'))
 
 @app.route('/destroy/alldone')  
 def destroy_alldone():
@@ -49,7 +50,8 @@ def destroy_alldone():
         db.session.delete(i)
     db.session.commit()
     posts = Post.query.all()
-    return render_template("index.html", posts = posts)
+    
+    return redirect(url_for('.index'))
 
 @app.route('/new')
 def new_post():
@@ -68,9 +70,7 @@ def create_post():
     db.session.add(new_post)
     db.session.commit()
 
-    posts = Post.query.all()
-
-    return render_template("index.html", posts = posts)
+    return redirect(url_for('.index'))
 
 
 @app.route('/edit/<int:id>')
@@ -89,7 +89,7 @@ def update_post(id):
     post.date = str(datetime.today().year) + "-" + str(datetime.today().month) + "-" + str(datetime.today().day)
     db.session.commit()
 
-    return render_template("show.html", post = post)
+    return redirect(url_for('.index'))
 
 @app.route('/done/<int:id>')
 def done_post(id):
@@ -100,7 +100,7 @@ def done_post(id):
     db.session.commit()
     posts = Post.query.all()
 
-    return render_template("index.html", posts = posts)
+    return redirect(url_for('.index'))
 
 @app.route('/undone/<int:id>')
 def undone_post(id):
@@ -111,4 +111,4 @@ def undone_post(id):
     db.session.commit()
     posts = Post.query.all()
 
-    return render_template("index.html", posts = posts)
+    return redirect(url_for('.index'))
