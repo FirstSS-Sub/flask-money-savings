@@ -22,7 +22,7 @@
     <br>
     <div>
         <a href="/edit/{{ post.id }}" class="btn btn-warning far fa-edit"> 編集 </a>
-        <a href="/destroy/{{ post.id }}" class="btn btn-danger fas fa-trash-alt"> 削除 </a>
+        <a href="/destroy/{{ post.id }}" class="btn btn-danger fas fa-trash-alt" onclick="return confirm('この項目を削除します。よろしいですか？')"> 削除 </a>
         <a href="/done/{{ post.id }}" class="btn btn-info fas fa-check-circle"> Done </a>
         <a href="/undone/{{ post.id }}" class="btn btn-success fas fa-undo-alt"> Undone </a>        
     </div>

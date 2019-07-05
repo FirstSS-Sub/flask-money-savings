@@ -28,7 +28,6 @@ def index():
 
 @app.route('/show/<int:id>')
 def show(id):
-    
     post = Post.query.get(id)
     return render_template("show.html", post = post)
 
