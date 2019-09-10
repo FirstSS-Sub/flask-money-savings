@@ -42,17 +42,6 @@ def destroy(id):
 
     return redirect(url_for('.index'))
 
-@app.route('/destroy/alldone')  
-def destroy_alldone():
-
-    posts_done = Post.query.filter_by(commit=1).all()
-    for i in posts_done:
-        db.session.delete(i)
-    db.session.commit()
-    posts = Post.query.all()
-    
-    return redirect(url_for('.index'))
-
 @app.route('/new')
 def new_post():
     
