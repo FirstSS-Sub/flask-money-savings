@@ -9,7 +9,7 @@ https://github.com/TaroNoguchi/flask-app-practice
     - request.form[""]だとナゼかstr型になってしまう。request.form.get()にしなければいけないと気付いた。
 - DB(SQLite)
     - DB Browser for SQLite をダウンロード。
-    - テーブル "posts" に 項目 "charge" を追加。
+    - テーブル "posts" に 項目 "income", "expense" を追加。
 
 # これから
 - 年月ごとにページを分けられるようにする
